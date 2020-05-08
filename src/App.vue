@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <div class="col-md-12">
+      <div class="row">
+        <router-view />
+
+        <div class="col-md-4 float-right" v-if="isLoggedIn">
+          <div class="list-group shadow">
+            <router-link to="/" class="list-group-item dark text-white">Movies</router-link>
+            <router-link to="/movies/add" class="list-group-item dark text-white">Add Movie</router-link>
+            <router-link to="/actors" class="list-group-item dark text-white">Actors</router-link>
+             <router-link to="/actors/add" class="list-group-item dark text-white">Add Actor</router-link>
+            <router-link to="/watchlaters" class="list-group-item dark text-white">Watchlaters</router-link>
+            <router-link to="/logout" class="list-group-item dark text-white">Log Out</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn"
+    })
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
